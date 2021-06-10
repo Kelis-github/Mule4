@@ -1,0 +1,20 @@
+{
+  "sampleData": {
+    "6e18295d-3e8b-4ccb-803e-c3c35ef5feea": {
+      "attributes": "sample_data/list_json.json",
+      "payload": "sample_data/list_json_1.json"
+    },
+    "72f99e56-f838-48b8-8b54-2f40d7e6c7b9": {
+      "payload": "sample_data/data.xml"
+    },
+    "3d6f722a-e217-4b6a-b279-e62e21e0dd0e": {
+      "payload": "sample_data/list_csv.csv"
+    },
+    "519b1b2d-243b-4ba8-bf3b-ce5b3078a3d8": {
+      "payload": "sample_data/list_csv_1.csv"
+    },
+    "5c9ad22a-5652-4b44-b59f-ac549889884a": {
+      "payload": "sample_data/list_json_2.json"
+    }
+  }
+}

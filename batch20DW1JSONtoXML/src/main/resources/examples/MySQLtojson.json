@@ -1,0 +1,74 @@
+[
+	{
+		"Cust_ID" : 111,
+		"Cust_FirstName" : "Nick",
+		"Cust_LastName" : "Jones",
+		"Cust_Age" : 26,
+		"Cust_Gender" : "M",
+		"Cust_Country" : "USA",
+		"Cust_Salary" : 20000000.00
+	},
+	{
+		"Cust_ID" : 222,
+		"Cust_FirstName" : "Antony",
+		"Cust_LastName" : "Martial",
+		"Cust_Age" : 24,
+		"Cust_Gender" : "M",
+		"Cust_Country" : "France",
+		"Cust_Salary" : 10000000.00
+	},
+	{
+		"Cust_ID" : 333,
+		"Cust_FirstName" : "Nebiha",
+		"Cust_LastName" : "Amir",
+		"Cust_Age" : 24,
+		"Cust_Gender" : "F",
+		"Cust_Country" : "uzbekistan",
+		"Cust_Salary" : 36000000.00
+	},
+	{
+		"Cust_ID" : 444,
+		"Cust_FirstName" : "Soresa",
+		"Cust_LastName" : "Hailu",
+		"Cust_Age" : 24,
+		"Cust_Gender" : "M",
+		"Cust_Country" : "Unkown",
+		"Cust_Salary" : 34000000.00
+	},
+	{
+		"Cust_ID" : 555,
+		"Cust_FirstName" : "Beka",
+		"Cust_LastName" : "Haile",
+		"Cust_Age" : 25,
+		"Cust_Gender" : "M",
+		"Cust_Country" : "kazakhstan",
+		"Cust_Salary" : 400000.00
+	},
+	{
+		"Cust_ID" : 666,
+		"Cust_FirstName" : "Nick",
+		"Cust_LastName" : "Jones",
+		"Cust_Age" : 26,
+		"Cust_Gender" : "M",
+		"Cust_Country" : "USA",
+		"Cust_Salary" : 20000000.00
+	},
+	{
+		"Cust_ID" : 777,
+		"Cust_FirstName" : "Poul",
+		"Cust_LastName" : "Pogba",
+		"Cust_Age" : 26,
+		"Cust_Gender" : "M",
+		"Cust_Country" : "France",
+		"Cust_Salary" : 20000000.00
+	},
+	{
+		"Cust_ID" : 888,
+		"Cust_FirstName" : "Betty",
+		"Cust_LastName" : "G",
+		"Cust_Age" : 27,
+		"Cust_Gender" : "F",
+		"Cust_Country" : "Ethiopia",
+		"Cust_Salary" : 70000000.00
+	}
+]

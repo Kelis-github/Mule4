@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="be2c3f5a-6d3b-4ba5-bfab-f7beb3299e5e" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="batch20dw1Flow" doc:id="cd69f533-0645-4066-b197-edcf971a0b75" >
+		<http:listener doc:name="Listener" doc:id="a735fc17-45f4-4cd6-8b3b-4d5c55092a89" path="/demo7" config-ref="HTTP_Listener_config"/>
+		<ee:transform doc:name="json to xml" doc:id="6e18295d-3e8b-4ccb-803e-c3c35ef5feea" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+//var myvar=(a)->(b)->a+b
+//var myadd=myvar(10)
+
+---
+payload.Cust_ID
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="DW custom functions" doc:id="5c9ad22a-5652-4b44-b59f-ac549889884a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+//Array<Any>= [1, 2, "a", "b", true, false, { a : "b"}, [1, 2, 3] ]
+//var x=["Banana","Orange","Lettuce"]
+output application/json
+---
+//[2,5,7,3,8] map (value,index)->{
+//	index:value
+//}
+//[2,5,7,3,8] filter (&>3)
+//x filter ($>=3)
+//sizeOf(x)
+//[ "Mari" startsWith("Mar"), "Mari" startsWith("Em") ]
+//endesWith
+//"Banana" startsWith("Ban")
+//"Mario" endsWith("io")
+//{ price: random() }
+//read('<hello>world</hello>','application/xml')
+//read('<name>kebede</name>,<age>30</age>','application/xml')
+//[0,1] zip ["a","b"]
+//unzip splits the array and regroups based on index
+//unzip([ [0,"a"], [1,"b"], [2,"c"],[ 3,"d"] ])
+{ "output" : write(payload, "application/csv", {"header":true, "separator" : ","}) }
+
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="CSVflow" doc:id="4c57a5af-7d23-4021-a5cd-8046ed81f006" >
+		<ee:transform doc:name="NameSpace" doc:id="3d6f722a-e217-4b6a-b279-e62e21e0dd0e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+ns products http://www.craftsshopping.com/products/Product
+ns Johnsorder http://www.craftsshopping.com/orders/order
+---
+products:
+	products#Product:{
+		Johnsorder#orderid: "200"
+		
+	}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="CSV to JSON" doc:id="519b1b2d-243b-4ba8-bf3b-ce5b3078a3d8" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+//payload
+//{ "valuesOf" : valuesOf({a: true, b: false}) }
+//{ "keysOf" : valuesOf({a: true, b: false}) }
+//[ typeOf("A b"), typeOf([1,2]), typeOf(34), typeOf(true), typeOf({ a : 5 }) ]
+//upper("upper")
+//lower("LOWER")
+
+//{ "hyphenate" : ["a","b","c"] joinBy "-" }
+{"a":"b","c":"d"} pluck (value,key,index) -> { (index) : { (value):key} }
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
