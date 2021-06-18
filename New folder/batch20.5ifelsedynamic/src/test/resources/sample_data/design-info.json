@@ -1,0 +1,9 @@
+{
+  "sampleData": {
+    "c8449d38-1fdc-454b-9034-41b83e610aac": {
+      "vars-age": "sample_data/java.dwl",
+      "attributes": "sample_data/httprequestattributes.dwl",
+      "payload": "sample_data/java_1.dwl"
+    }
+  }
+}

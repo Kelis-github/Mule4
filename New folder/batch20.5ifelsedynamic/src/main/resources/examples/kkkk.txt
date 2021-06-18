@@ -1,0 +1,18 @@
+                [
+              {
+                 "category_id": 20,
+                 "description": "dell laptop",
+                 "name": "dell laptop",
+                 "price": 1000,
+                 "productid": 102,
+                 "video_url": "http://tests.com/dell-laptop"
+                },
+               {
+                 "category_id": 10,
+                 "description": "Lenovo laptop",
+                 "name":"lenovo laptop",
+                 "price": 1000,
+                 "productid": 100,
+                 "video_url": "http://tests.com/lenovo-laptop"
+                } 
+              ]

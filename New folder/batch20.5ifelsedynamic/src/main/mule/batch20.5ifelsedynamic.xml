@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="44712347-48b2-4886-8112-4ab01637014a" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<flow name="batch20.5ifelsedynamicFlow" doc:id="0a32deba-e2e9-493e-8dab-8b03a2a1f433" >
+		<http:listener doc:name="Listener" doc:id="29fb6e49-c633-47e5-b196-f99a1a6feec1" config-ref="HTTP_Listener_config" path="/demo5"/>
+		<set-variable value="payload" doc:name="Set Variable" doc:id="87d8468f-2205-425e-a0ca-04548d99a872" variableName="price"/>
+		<ee:transform doc:name="Transform Message" doc:id="c8449d38-1fdc-454b-9034-41b83e610aac" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+//var itemPrice= attributes.queryParams.price
+---	
+if(vars.price >5000){
+Item: " is very Expensive"	
+}
+
+else if(vars.price <5000 and vars.price> 1000){
+	Item: "expensive"
+} 
+
+else if(vars.price <=1000 and vars.price > 500){
+	Item: "is Fair"
+} 
+else {
+Item: "The price is below 500"
+	
+}	
+	
+	]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
